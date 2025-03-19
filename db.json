@@ -1,27 +1,13 @@
 {
   "todos": [
     {
-      "id": "1",
-      "title": "Learn React",
-      "description": "Learn React by building a project",
-      "column": "1",
-      "created_at": "2022-02-01T00:00:00.000Z"
-    },
-    {
-      "id": "2",
-      "title": "Learn JS",
-      "description": "Learn React by building a project",
-      "column": "2",
-      "created_at": "2022-02-01T00:00:00.000Z"
-    },
-    {
-      "id": "9de2",
-      "title": "приветики",
+      "id": "89b5",
+      "title": "Сходить в туалет",
       "column": "2"
     },
     {
-      "id": "8496",
-      "title": "Сделать ДЗ",
+      "id": "102b",
+      "title": "Сделать удаление задачи",
       "column": "3"
     }
   ],
