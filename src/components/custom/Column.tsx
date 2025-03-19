@@ -6,11 +6,14 @@ import { TaskCard } from "./Task";
 import { TaskType } from "@/types";
 import { ReloadCTX } from "@/contexts/reload";
 import Selected from "./Selected";
+import { useNavigate } from "react-router-dom";
+import { log } from "node:console";
 interface ColumnProps {
 	id: string | number;
 	title: string;
 	array?: string[];
 }
+
 
 export const Column: React.FC<ColumnProps> = ({
 	title,
@@ -20,8 +23,7 @@ export const Column: React.FC<ColumnProps> = ({
 	const [tasks, setTasks] = useState<TaskType[]>([]);
 	const [reload, setReload] = useContext(ReloadCTX);
 	const [modal, setModal] = useState(false)
-
-
+	
 
 	useEffect(() => {
 		fetch("http://localhost:8080/todos?column=" + id)
@@ -60,7 +62,9 @@ export const Column: React.FC<ColumnProps> = ({
 				</div>
 				<ScrollArea className="flex-1 p-4 space-y-3">
 					{tasks.map((task) => (
-						<TaskCard {...task} key={task.id} />
+						<TaskCard  {...task} key={task.id}
+							className="TaskCard"/>
+
 					))}
 				</ScrollArea>
 				<div className="p-4 bg-gray-200 flex justify-center">

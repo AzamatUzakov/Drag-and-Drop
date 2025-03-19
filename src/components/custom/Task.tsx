@@ -2,6 +2,7 @@ import { GripVertical } from "lucide-react";
 import { Card, CardContent } from "../ui/card";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface TaskCardProps {
 	id: string | number;
@@ -10,10 +11,14 @@ interface TaskCardProps {
 	column: string | number;
 	title: string;
 	className?: string;
+	onDoubleClick?: () => void;
 }
 
 export const TaskCard: React.FC<TaskCardProps> = ({ id, title }) => {
 	const [className, setClassName] = useState("");
+
+	const navigate = useNavigate()
+
 
 	const onDragStart = (e: any) => {
 		setClassName("bg-red-500");
@@ -37,7 +42,10 @@ export const TaskCard: React.FC<TaskCardProps> = ({ id, title }) => {
 				"bg-white shadow-sm flex items-center p-3 gap-3",
 				className
 			)}
-		>
+		
+			onDoubleClick={()=> navigate(`/todos/${id}`)}
+
+				>
 			<GripVertical className="text-gray-400" size={16} />
 			<CardContent className="p-0 flex-1">{title}</CardContent>
 		</Card>
