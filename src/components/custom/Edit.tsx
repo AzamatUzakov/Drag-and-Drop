@@ -1,12 +1,4 @@
 import React, { useEffect, useState } from "react";
-
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
 import {
     Card,
     CardContent,
@@ -14,10 +6,8 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import { title } from "process";
 
 interface EditProps {
     setEdit: React.Dispatch<React.SetStateAction<boolean>>;
