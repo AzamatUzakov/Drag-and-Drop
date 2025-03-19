@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { data, useNavigate, useParams } from "react-router-dom";
+import { TiArrowBack } from "react-icons/ti";
 
 interface ProductProps {
 
@@ -32,7 +33,11 @@ const Product: React.FC<ProductProps> = () => {
         <>
             <h1 className="text-center text-2xl">Задача</h1>
 
-            <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
+            <div className="flex items-center justify-center h-full bg-gray-100 p-4 relative">
+                <TiArrowBack className="absolute top-2 left-2 cursor-pointer" size={"40px"}
+                onClick={()=> navigate("/")}
+                />
+
                 <div className="bg-white shadow-2xl rounded-2xl p-6 w-80">
                     <div className="h-32 rounded-lg shadow-md" style={{ backgroundColor: '#4ecdc4' }}>
                         <h1>{todo?.title}</h1>
