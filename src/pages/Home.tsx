@@ -1,4 +1,5 @@
 import { Column } from "@/components/custom/Column";
+import Edit from "@/components/custom/Edit";
 import { ReloadCTX } from "@/contexts/reload";
 import { ColumnType } from "@/types";
 import React, { useEffect, useState } from "react";
@@ -27,6 +28,7 @@ const Home: React.FC<HomeProps> = () => {
 					/>
 				))}
 			</section>
+			
 		</ReloadCTX.Provider>
 	);
 };

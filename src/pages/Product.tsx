@@ -2,19 +2,34 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { TiArrowBack } from "react-icons/ti";
 import { MdCancel, MdEdit } from "react-icons/md";
+import Edit from "@/components/custom/Edit";
+import { SheetTrigger } from "@/components/ui/sheet";
+import { log } from "node:console";
 
 interface ProductProps {
     id?: string
     title?: string
     description?: string
     column?: string
-    onClick?: () => void    
+    onClick?: () => void
 }
 
 const Product: React.FC<ProductProps> = () => {
     const { id } = useParams()
     const navigate = useNavigate()
     const [todo, setTodo] = useState<ProductProps | null>(null)
+    const [edit, setEdit] = useState(false)
+    const [editText, setEditText] = useState("")
+
+
+    useEffect(() => {
+        if (todo) {
+            setEditText(todo.title as string)
+        }
+    }, [todo])
+    console.log(editText);
+    
+
     useEffect(() => {
         fetch(`http://localhost:8080/todos/${id}`)
             .then(res => res.json())
@@ -34,7 +49,7 @@ const Product: React.FC<ProductProps> = () => {
     }
 
 
-    const removeTask = async (id:string) => {
+    const removeTask = async (id: string) => {
         try {
             const res = await fetch(`http://localhost:8080/todos/${id}`, {
                 method: "DELETE",
@@ -66,7 +81,7 @@ const Product: React.FC<ProductProps> = () => {
                 />
                 <div>
                     <div className="flex justify-around mb-2">
-                        <MdEdit color="green" size={"30px"} className="cursor-pointer" />
+                        <MdEdit color="green" size={"30px"} className="cursor-pointer" onClick={() => setEdit(true)} />
 
                         <MdCancel color="red" size={"30px"} className="cursor-pointer" onClick={() => {
                             navigate("/")
@@ -76,7 +91,7 @@ const Product: React.FC<ProductProps> = () => {
                     </div>
                     <div className="bg-white shadow-2xl rounded-2xl p-6 w-80">
                         <div className="h-32 rounded-lg shadow-md flex flex-col justify-center items-center p-4 text-white" style={{ backgroundColor: '#4ecdc4' }}>
-                            <h1 className="text-lg font-bold">{todo?.title}</h1>
+                            <h1 className="text-lg font-bold">{editText}</h1>
                             <p className="text-[14px] mt-2 opacity-80 text-green-800 font-medium flex items-center gap-1">
                                 <b className="text-[15px] text-black font-semibold">Status:</b>
                                 <span className="bg-green-200 text-green-900 px-2 py-1 rounded-md shadow-sm">{columns}</span>
@@ -84,6 +99,7 @@ const Product: React.FC<ProductProps> = () => {
                     </div>
                 </div>
             </div>
+            {edit && < Edit setEdit={setEdit} setEditText={setEditText} editText={editText} id={todo?.id} />}
         </>
     );
 }

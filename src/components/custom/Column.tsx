@@ -77,7 +77,7 @@ export const Column: React.FC<ColumnProps> = ({
 
 
 			</Card>
-			{modal && <Selected setModal={setModal} />}
+
 		</div>
 	);
 };
