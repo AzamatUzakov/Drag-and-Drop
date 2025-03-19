@@ -3,8 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { TiArrowBack } from "react-icons/ti";
 import { MdCancel, MdEdit } from "react-icons/md";
 import Edit from "@/components/custom/Edit";
-import { SheetTrigger } from "@/components/ui/sheet";
-import { log } from "node:console";
+
 
 interface ProductProps {
     id?: string
